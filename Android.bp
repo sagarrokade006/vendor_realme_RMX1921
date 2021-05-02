@@ -56,6 +56,23 @@ cc_prebuilt_library_shared {
 	product_specific: true,
 }
 
+cc_prebuilt_library_shared {
+	name: "libqct_resampler",
+	owner: "realme",
+	strip: {
+		none: true,
+	},
+	target: {
+		android_arm: {
+			srcs: ["proprietary/system_ext/lib/libqct_resampler.so"],
+		},
+	},
+	compile_multilib: "32",
+	check_elf_files: false,
+	prefer: true,
+	system_ext_specific: true,
+}
+
 android_app_import {
 	name: "SoterService",
 	owner: "realme",
@@ -64,17 +81,6 @@ android_app_import {
 	dex_preopt: {
 		enabled: false,
 	},
-}
-
-android_app_import {
-	name: "WfdService",
-	owner: "realme",
-	apk: "proprietary/priv-app/WfdService/WfdService.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-	privileged: true,
 }
 
 android_app_import {
@@ -191,6 +197,24 @@ android_app_import {
 }
 
 android_app_import {
+	name: "WfdService",
+	owner: "realme",
+	apk: "proprietary/system_ext/priv-app/WfdService/WfdService.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	privileged: true,
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "WfdCommon",
+	owner: "realme",
+	jars: ["proprietary/framework/WfdCommon.jar"],
+}
+
+android_app_import {
 	name: "daxService",
 	owner: "motorola",
 	apk: "proprietary/product/priv-app/daxService/daxService.apk",
@@ -210,12 +234,6 @@ android_app_import {
 	dex_preopt: {
 		enabled: false,
 	},
-}
-
-dex_import {
-	name: "WfdCommon",
-	owner: "realme",
-	jars: ["proprietary/system/framework/WfdCommon.jar"],
 }
 
 prebuilt_etc_xml {

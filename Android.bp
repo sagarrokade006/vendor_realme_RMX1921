@@ -78,11 +78,12 @@ cc_prebuilt_library_shared {
 android_app_import {
 	name: "SoterService",
 	owner: "realme",
-	apk: "proprietary/app/SoterService/SoterService.apk",
+	apk: "proprietary/vendor/app/SoterService/SoterService.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
 	},
+        soc_specific: true,
 }
 
 android_app_import {
